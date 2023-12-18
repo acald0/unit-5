@@ -63,7 +63,7 @@ def login():
 
 @app.route("/rating/<movie_id>", methods=["POST"])
 def rating(movie_id):
-    score = int(request.form.get("rating"))
+    score = request.form.get("rating")
     movie = crud.get_movie_by_id(movie_id)
     user = crud.get_user_by_id(session["primary_key"])
 
