@@ -61,6 +61,18 @@ def login():
         flash("Incorrect credentials, please try again!")
     return redirect("/")
 
+@app.route("/rating/<movie_id>", methods=["POST"])
+def rating(movie_id):
+    score = int(request.form.get("rating"))
+    movie = crud.get_movie_by_id(movie_id)
+    user = crud.get_user_by_id(session["primary_key"])
+
+    new_rating = crud.create_rating(score=score,movie=movie,user=user)
+    db.session.add(new_rating)
+    db.session.commit()
+     
+    return redirect("/movies")
+
 
 if __name__ == "__main__":
     connect_to_db(app)

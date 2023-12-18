@@ -5,4 +5,11 @@
 {% block body %}
 <h1>{{ user.email }}</h1>
 
+<h2>Ratings:</h2>
+{% for rating in ratings %}
+    <li>
+        {{ user.rating }}
+    </li>
+{% endfor %}
+
 {% endblock %}
