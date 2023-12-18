@@ -39,14 +39,14 @@ with server.app.app_context():
             email = f"user{n}@test.com"
             password = "test"
 
-            user = crud.create_user(email,password)
-            model.db.session.add(user)
+            new_user = crud.create_user(email,password)
+            model.db.session.add(new_user)
 
             for _ in range(10):
                 random_movie = choice(movies_in_db)
                 score = randint(1,5)
 
-                rating = crud.create_rating(user, random_movie, score)
+                rating = crud.create_rating(new_user, random_movie, score)
                 model.db.session.add(rating)
 
         model.db.session.commit()
